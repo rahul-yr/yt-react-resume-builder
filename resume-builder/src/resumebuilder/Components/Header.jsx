@@ -60,6 +60,9 @@ const desktopHeader = () => {
         <p className="text-base font-normal subpixel-antialiased text-purple-700 px-2">
           <Link to="/template/1">Template 1</Link>
         </p>
+        <p className="text-base font-normal subpixel-antialiased text-purple-700 px-2">
+          <Link to="/sample/resume">Sample Resume</Link>
+        </p>
       </div>
     </div>
   );

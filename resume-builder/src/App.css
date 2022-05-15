@@ -1,0 +1,10 @@
+
+@media print {
+    .page-break {
+        display: inline-block;
+        /* position: relative; */
+        page-break-inside: avoid;
+        page-break-before: auto;
+        page-break-after: auto;
+    }
+}

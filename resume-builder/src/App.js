@@ -2,6 +2,7 @@ import Dashboard from "./resumebuilder/Dashboard";
 import { Routes, Route, useRoutes } from "react-router-dom";
 import Templates from "./resumebuilder/Components/Templates";
 import TempProf from "./resumebuilder/Components/TempProf";
+import SampleResume from "./resumebuilder/Components/SampleResume";
 
 // function App() {
 //   return (
@@ -26,6 +27,10 @@ function App() {
         {
           path: "template/1",
           element: <TempProf />,
+        },
+        {
+          path: "sample/resume",
+          element: <SampleResume />,
         },
       ],
     },

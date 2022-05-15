@@ -1,6 +1,7 @@
 import React from "react";
 import Ratings from "./Ratings";
 import parse from "html-react-parser";
+import "./../../App.css";
 
 function Template1(props) {
   const headingTextColor = "text-blue-700 subpixel-antialiased";
@@ -46,7 +47,7 @@ function Template1(props) {
   const iterateSampleExperienceData = () => {
     return props.state.experience.sample_data.map((exp, index) => {
       return (
-        <React.Fragment key={index}>
+        <div key={index} className="page-break block">
           <div className="my-1"></div>
           <div className="flex flex-row">
             <div className="w-1/2">
@@ -71,7 +72,7 @@ function Template1(props) {
               },
             })}
           </div>
-        </React.Fragment>
+        </div>
       );
     });
   };
@@ -177,7 +178,7 @@ function Template1(props) {
               >
                 Experience details
               </p>
-              {iterateSampleExperienceData()}
+              <div className="block">{iterateSampleExperienceData()}</div>
             </div>
           </div>
         </div>
