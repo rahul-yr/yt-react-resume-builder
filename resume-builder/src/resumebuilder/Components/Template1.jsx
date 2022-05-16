@@ -47,7 +47,7 @@ function Template1(props) {
   const iterateSampleExperienceData = () => {
     return props.state.experience.sample_data.map((exp, index) => {
       return (
-        <div key={index} className="page-break block">
+        <div key={index} className="page-break">
           <div className="my-1"></div>
           <div className="flex flex-row">
             <div className="w-1/2">
