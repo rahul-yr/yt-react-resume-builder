@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import ReactToPrint from "react-to-print";
-import Template1 from "../ResumeTemplates/Template1";
+import SampleTemplate from "../ResumeTemplates/SampleTemplate";
 
 function SampleResume() {
   const printRef = useRef();
@@ -71,11 +71,11 @@ function SampleResume() {
       <div className="flex flex-row justify-center bg-slate-50">
         <div className="overflow-auto">
           <div ref={printRef}>
-            <Template1 configs={configs} />
+            <SampleTemplate configs={configs} />
           </div>
         </div>
       </div>
-      <div className="py-16 bg-slate-50">&nbsp;</div>
+      <div className="py-8 bg-slate-50">&nbsp;</div>
     </React.Fragment>
   );
 }

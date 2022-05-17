@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import parse from "html-react-parser";
 
-function Template1(props) {
+function SampleTemplate(props) {
   const defaults = useSelector((state) => state.template1.default);
   const textSmoothing = " subpixel-antialiased ";
   const blockOuterMargin = " m-[2pt] ";
@@ -446,7 +446,7 @@ function Template1(props) {
   );
 }
 
-export default Template1;
+export default SampleTemplate;
 
 function CommonLayout(props) {
   return <div className={props.tail_css}>{props.children}</div>;
