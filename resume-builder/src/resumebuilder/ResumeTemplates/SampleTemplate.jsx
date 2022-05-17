@@ -16,77 +16,90 @@ function SampleTemplate(props) {
     blockInternalPadding;
 
   const headerBlock = () => {
-    return (
-      <div
-        className={
-          `rounded-3xl flex flex-row items-center ` +
-          props.configs.blockBackgroundColor +
-          blockOuterMargin
-        }
-      >
-        <div className={`w-1/3` + blockInternalPadding}>
-          <div className="flex flex-col ">
+    if (
+      defaults.user.fname.length > 1 ||
+      defaults.user.lname.length > 1 ||
+      defaults.user.profession.length > 1 ||
+      defaults.user.email.length > 1 ||
+      defaults.user.phone.length > 1 ||
+      defaults.objective.length > 1
+    ) {
+      return (
+        <div
+          className={
+            `rounded-3xl flex flex-row items-center ` +
+            props.configs.blockBackgroundColor +
+            blockOuterMargin
+          }
+        >
+          <div className={`w-1/3` + blockInternalPadding}>
+            <div className="flex flex-col ">
+              <p
+                className={
+                  `font-bold truncate ` +
+                  props.configs.primaryFontColor +
+                  props.configs.boldTextSize +
+                  textSmoothing
+                }
+              >
+                {defaults.user.fname}&nbsp;
+                {defaults.user.lname}
+              </p>
+              <p
+                className={
+                  `font-bold truncate ` +
+                  props.configs.headingFontColor +
+                  props.configs.titleFontSize +
+                  textSmoothing
+                }
+              >
+                {defaults.user.profession}
+              </p>
+              <p
+                className={
+                  ` font-medium truncate` +
+                  props.configs.headingFontColor +
+                  props.configs.primaryTextSize +
+                  textSmoothing
+                }
+              >
+                {defaults.user.email.length > 1 && (
+                  <FontAwesomeIcon icon={faEnvelope} />
+                )}
+                &nbsp;
+                {defaults.user.email}
+              </p>
+              <p
+                className={
+                  ` font-medium truncate ` +
+                  props.configs.headingFontColor +
+                  props.configs.primaryTextSize +
+                  textSmoothing
+                }
+              >
+                {defaults.user.phone.length > 1 && (
+                  <FontAwesomeIcon icon={faPhone} />
+                )}
+                &nbsp;
+                {defaults.user.phone}
+              </p>
+            </div>
+          </div>
+          <div className={`w-2/3` + blockInternalPadding}>
             <p
               className={
-                `font-bold truncate ` +
+                `m-2 break-words text-ellipsis ` +
                 props.configs.primaryFontColor +
-                props.configs.boldTextSize +
-                textSmoothing
-              }
-            >
-              {defaults.user.fname}&nbsp;
-              {defaults.user.lname}
-            </p>
-            <p
-              className={
-                `font-bold truncate ` +
-                props.configs.headingFontColor +
-                props.configs.titleFontSize +
-                textSmoothing
-              }
-            >
-              {defaults.user.profession}
-            </p>
-            <p
-              className={
-                ` font-medium truncate` +
-                props.configs.headingFontColor +
                 props.configs.primaryTextSize +
                 textSmoothing
               }
             >
-              <FontAwesomeIcon icon={faEnvelope} />
-              &nbsp;
-              {defaults.user.email}
-            </p>
-            <p
-              className={
-                ` font-medium truncate ` +
-                props.configs.headingFontColor +
-                props.configs.primaryTextSize +
-                textSmoothing
-              }
-            >
-              <FontAwesomeIcon icon={faPhone} />
-              &nbsp;
-              {defaults.user.phone}
+              {defaults.objective}
             </p>
           </div>
         </div>
-        <div className={`w-2/3` + blockInternalPadding}>
-          <p
-            className={
-              `m-2 break-words text-ellipsis ` +
-              props.configs.primaryFontColor +
-              props.configs.primaryTextSize +
-              textSmoothing
-            }
-          >
-            {defaults.objective}
-          </p>
-        </div>
-      </div>
-    );
+      );
+    }
   };
 
   const educationBlock = () => {
