@@ -429,7 +429,9 @@ function Template1(props) {
   return (
     <div
       className={
-        ` w-[209mm] h-[296mm] p-[4pt] ` + props.configs.pageBackgroundColor
+        `  p-[4pt]  ` +
+        props.configs.pageBackgroundColor +
+        props.configs.paperSize
       }
     >
       {headerBlock()}
@@ -447,12 +449,34 @@ function CommonLayout(props) {
   return <div className={props.tail_css}>{props.children}</div>;
 }
 
+// function Ratings({ height, filledWidth, bgColor, fillColor }) {
+//   return (
+//     <div className={"mx-[2pt] rounded " + height + bgColor}>
+//       <div className={`rounded ` + height + filledWidth + fillColor}>
+//         &nbsp;
+//       </div>
+//     </div>
+//   );
+// }
+
 function Ratings({ height, filledWidth, bgColor, fillColor }) {
   return (
     <div className={"mx-[2pt] rounded " + height + bgColor}>
-      <div className={`rounded ` + height + filledWidth + fillColor}>
-        &nbsp;
-      </div>
+      {filledWidth.includes("20%") && (
+        <div className={`rounded w-[20%] ` + height + fillColor}>&nbsp;</div>
+      )}
+      {filledWidth.includes("40%") && (
+        <div className={`rounded w-[40%] ` + height + fillColor}>&nbsp;</div>
+      )}
+      {filledWidth.includes("60%") && (
+        <div className={`rounded w-[60%] ` + height + fillColor}>&nbsp;</div>
+      )}
+      {filledWidth.includes("80%") && (
+        <div className={`rounded w-[80%] ` + height + fillColor}>&nbsp;</div>
+      )}
+      {filledWidth.includes("100%") && (
+        <div className={`rounded w-[100%] ` + height + fillColor}>&nbsp;</div>
+      )}
     </div>
   );
 }

@@ -1,18 +1,8 @@
 import Dashboard from "./resumebuilder/Dashboard";
-import { Routes, Route, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import Templates from "./resumebuilder/Components/Templates";
-import TempProf from "./resumebuilder/Components/TempProf";
 import SampleResume from "./resumebuilder/Components/SampleResume";
-
-// function App() {
-//   return (
-//         <Routes>
-//           <Route path="/" element={<Dashboard />}>
-//             <Route path="/edit" element={<Edit />} />
-//           </Route>
-//         </Routes>
-//   );
-// }
+import EditTemplate from "./resumebuilder/Components/EditTemplate";
 
 function App() {
   let element = useRoutes([
@@ -25,8 +15,8 @@ function App() {
           element: <Templates />,
         },
         {
-          path: "template/1",
-          element: <TempProf />,
+          path: "template/:id",
+          element: <EditTemplate />,
         },
         {
           path: "sample/resume",

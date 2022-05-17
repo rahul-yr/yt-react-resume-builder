@@ -124,7 +124,7 @@ const initialState = {
         end_year: 2019,
         end_month: "Jan",
         description:
-          "<ul> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li><em><strong>Developed an application for Opensource developers.</strong></em></li> </ul>",
+          "<ul>  <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li>Developed Backend for Youtube</li> <li><em><strong>Developed an application for Opensource developers.</strong></em></li> </ul>",
       },
       {
         company: "Company 3",
