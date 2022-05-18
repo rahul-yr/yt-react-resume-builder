@@ -172,26 +172,6 @@ const initialState = {
         required: true,
         label: "Profession",
       },
-      dob: {
-        required: false,
-        label: "Date of Birth",
-      },
-      street_address: {
-        required: false,
-        label: "Street Address",
-      },
-      city: {
-        required: false,
-        label: "City",
-      },
-      state: {
-        required: false,
-        label: "State",
-      },
-      zip: {
-        required: false,
-        label: "Zip code",
-      },
       phone: {
         required: true,
         label: "Phone",
@@ -210,9 +190,17 @@ const initialState = {
         required: true,
         label: "School",
       },
-      location: {
+      degree: {
         required: true,
-        label: "Location",
+        label: "Degree",
+      },
+      major: {
+        required: true,
+        label: "Major",
+      },
+      percentage: {
+        required: true,
+        label: "Percentage",
       },
       start_year: {
         required: true,
@@ -230,17 +218,9 @@ const initialState = {
         required: true,
         label: "End Month",
       },
-      degree: {
+      location: {
         required: true,
-        label: "Degree",
-      },
-      major: {
-        required: true,
-        label: "Major",
-      },
-      percentage: {
-        required: true,
-        label: "Percentage",
+        label: "Location",
       },
     },
     skills: {
@@ -261,34 +241,42 @@ const initialState = {
       company: {
         required: true,
         label: "Company",
+        type: "text",
       },
       role: {
         required: true,
         label: "Role",
+        type: "text",
       },
       start_year: {
         required: true,
         label: "Start Year",
+        type: "number",
       },
       start_month: {
         required: true,
         label: "Start Month",
+        type: "month",
       },
       end_year: {
         required: true,
         label: "End Year",
+        type: "number",
       },
       end_month: {
         required: true,
         label: "End Month",
+        type: "month",
       },
       description: {
         required: true,
         label: "Description",
+        type: "html-editor",
       },
       present: {
         required: false,
         label: "Present",
+        type: "checkbox",
       },
     },
     certifications: {
@@ -333,12 +321,44 @@ const initialState = {
     certifications: [],
     links: [],
   },
+  current: {
+    editScreen: 0,
+  },
+};
+
+const setUserDetails = (state, action) => {
+  const { payload } = action;
+  if (payload.key in state.data.user) {
+    state.data.user[payload.key] = payload.value;
+  }
+};
+
+const setObjective = (state, action) => {
+  const { payload } = action;
+  if (payload.key in state.data) {
+    state.data[payload.key] = payload.value;
+  }
+};
+
+const updateEditSceen = (state, action) => {
+  const { payload } = action;
+  state.current.editScreen = payload;
 };
 
 const template1Slice = createSlice({
   name: "template1",
   initialState,
-  reducers: {},
+  reducers: {
+    setUserDetailsAction: setUserDetails,
+    setObjectiveAction: setObjective,
+    updateEditScreenAction: updateEditSceen,
+  },
 });
+
+export const {
+  setUserDetailsAction,
+  setObjectiveAction,
+  updateEditScreenAction,
+} = template1Slice.actions;
 
 export default template1Slice.reducer;

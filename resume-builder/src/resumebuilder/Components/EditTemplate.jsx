@@ -1,29 +1,18 @@
 import React, { useRef, useState } from "react";
 import ReactToPrint from "react-to-print";
-import Template1 from "./../ResumeTemplates/Template1";
+
+import PreviewTemplate from "./PreviewTemplate";
+import { useMatch } from "react-router-dom";
+import EditTemplate1 from "../EditTemplates/EditTemplate1";
+import EditTemplatesWhiteBG from "./EditTemplatesWhiteBG";
 
 function EditTemplate() {
   const printRef = useRef();
   const [previewMode, setPreviewMode] = useState(false);
-  const configs = {
-    // common
-    titleFontSize: " text-[16pt] ",
-    boldTextSize: " text-[14pt] ",
-    primaryTextSize: " text-[12pt] ",
-    infoTextSize: " text-[10pt] ",
-    fontFamily: " font-sans ",
-    pageBackgroundColor: " bg-slate-100 ",
-    blockBackgroundColor: " bg-white ",
-    primaryFontColor: " text-black ",
-    headingFontColor: " text-blue-700 ",
-    // rating
-    ratingBarColor: " bg-gray-200 ",
-    ratingBarFillColor: " bg-yellow-400 ",
-    ratingBarHeight: " h-[4pt] ",
-    // link underline color
-    linkUnderlineColor: " decoration-slate-300 ",
-    // paper size
-    paperSize: " w-[209mm] h-[296mm] ",
+
+  const handleCalculations = () => {
+    console.log(printRef.current.clientWidth, printRef.current.clientHeight);
+    console.log(printRef.current.scrollHeight);
   };
 
   const allButtons = () => {
@@ -67,18 +56,8 @@ function EditTemplate() {
       <div className="flex flex-row justify-center bg-slate-50">
         <div className="overflow-auto">
           <div ref={printRef}>
-            <Template1 configs={configs} />
+            <PreviewTemplate />
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  function EditDetails() {
-    return (
-      <div className="flex flex-row justify-center bg-slate-50">
-        <div className="overflow-auto">
-          <div>Edit View</div>
         </div>
       </div>
     );
@@ -88,7 +67,7 @@ function EditTemplate() {
     <React.Fragment>
       <div className="flex flex-row justify-start p-4 bg-slate-50">
         <div className="md:w-1/4"></div>
-        <div className="md:1/2">{allButtons()}</div>
+        <div className="w-full md:2/4">{allButtons()}</div>
         <div className="md:w-1/4"></div>
       </div>
       {/* pdf viewer */}
@@ -96,6 +75,20 @@ function EditTemplate() {
       <div className="py-8 bg-slate-50">&nbsp;</div>
     </React.Fragment>
   );
+}
+
+function EditDetails() {
+  const match = useMatch("/template/:id");
+  const id = match.params.id;
+  if (id === "1" || id === "2") {
+    return <EditTemplate1 />;
+  } else {
+    return (
+      <EditTemplatesWhiteBG>
+        <p>No template found</p>
+      </EditTemplatesWhiteBG>
+    );
+  }
 }
 
 export default EditTemplate;

@@ -46,11 +46,6 @@ function SampleResume() {
   //   paperSize: " w-[209mm] h-[296mm] ",
   // };
 
-  const handleCalculations = () => {
-    console.log(printRef.current.clientWidth, printRef.current.clientHeight);
-    console.log(printRef.current.scrollHeight);
-  };
-
   return (
     <React.Fragment>
       {/* button position adjuster */}
