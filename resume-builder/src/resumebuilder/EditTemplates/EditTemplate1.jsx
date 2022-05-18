@@ -3,9 +3,16 @@ import {
   setUserDetailsAction,
   setObjectiveAction,
   updateEditScreenAction,
+  addExperienceAction,
+  updateExperienceAction,
+  deleteExperienceAction,
 } from "./../../redux/template1Slice";
 import { useSelector, useDispatch } from "react-redux";
-import { Transition } from "@headlessui/react";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "./RTE.css";
+import draftToHtml from "draftjs-to-html";
 
 function BasicDetailsHeader() {
   const userData = useSelector((state) => state.template1.data.user);
@@ -71,6 +78,51 @@ function Objective() {
   );
 }
 function ExperienceSummary() {}
+
+function GenerateYears() {
+  var i = new Date().getFullYear();
+  var j = i - 60;
+
+  // iterate through years and add to option tag
+  var options = [];
+  for (var year = i; year > j; year--) {
+    options.push(
+      <option key={year} value={year}>
+        {year}
+      </option>
+    );
+  }
+  return options;
+}
+
+function GenerateMonths() {
+  // 3 letters months  list
+  var months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  var options = [];
+  for (var i = 0; i < months.length; i++) {
+    options.push(
+      <option key={i} value={months[i]}>
+        {months[i]}
+      </option>
+    );
+  }
+  return options;
+}
+
 function ExperienceDetails() {
   const data = useSelector((state) => state.template1.data.experience);
   const validations = useSelector(
@@ -78,6 +130,9 @@ function ExperienceDetails() {
   );
   const dispatch = useDispatch();
   // local states
+  const [editorState, setEditorState] = React.useState(() =>
+    EditorState.createEmpty()
+  );
   const [localData, setLocalData] = useState({
     company: "",
     role: "",
@@ -85,32 +140,164 @@ function ExperienceDetails() {
     start_month: "",
     end_year: "",
     end_month: "",
-    description: "",
-    present: false,
+    present: true,
   });
-
-  const handleUpdates = () => {
-    // dispatch(setObjectiveAction({ key: key, value: fname }));
+  const addData = () => {
+    dispatch(
+      addExperienceAction({
+        ...localData,
+        description: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+      })
+    );
+    setLocalData({
+      company: "",
+      role: "",
+      start_year: "",
+      start_month: "",
+      end_year: "",
+      end_month: "",
+      present: true,
+    });
+    let newEdS = EditorState.push(editorState, ContentState.createFromText(""));
+    setEditorState(newEdS);
   };
 
   return (
     <React.Fragment>
       <p className="text-xl font-medium text-blue-700">Work History</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {Object.keys(data).map((key) => (
-          <div key={key} className="my-2">
-            <input
-              className=" appearance-none border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
-              id={key}
-              type="text"
-              onChange={(e) => {
-                setLocalData({ ...localData, [key]: e.target.value });
-              }}
-              value={localData[key]}
-              placeholder={userValidations[key].label}
-            />
-          </div>
-        ))}
+        <div className="my-2">
+          <input
+            className=" appearance-none border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+            id="company"
+            type="text"
+            onChange={(e) => {
+              setLocalData({ ...localData, company: e.target.value });
+            }}
+            value={localData["company"]}
+            placeholder={validations["company"].label}
+          />
+        </div>
+        <div className="my-2">
+          <input
+            className=" appearance-none border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+            id="role"
+            type="text"
+            onChange={(e) => {
+              setLocalData({ ...localData, role: e.target.value });
+            }}
+            value={localData["role"]}
+            placeholder={validations["role"].label}
+          />
+        </div>
+        <div className="my-2">
+          <select
+            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="start_year"
+            value={localData["start_year"]}
+            onChange={(e) => {
+              setLocalData({ ...localData, start_year: e.target.value });
+            }}
+          >
+            <option value="">Start Year</option>
+            <GenerateYears />
+          </select>
+        </div>
+        <div className="my-2">
+          <select
+            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="start_month"
+            value={localData["start_month"]}
+            onChange={(e) => {
+              setLocalData({ ...localData, start_month: e.target.value });
+            }}
+          >
+            <option value="">Start Month</option>
+            <GenerateMonths />
+          </select>
+        </div>
+        {localData["present"] === false && (
+          <React.Fragment>
+            <div className="my-2">
+              <select
+                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="end_year"
+                value={localData["end_year"]}
+                onChange={(e) => {
+                  setLocalData({ ...localData, end_year: e.target.value });
+                }}
+              >
+                <option value="">End Year</option>
+                <GenerateYears />
+              </select>
+            </div>
+            <div className="my-2">
+              <select
+                className=" block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="end_month"
+                value={localData["end_month"]}
+                onChange={(e) => {
+                  setLocalData({ ...localData, end_month: e.target.value });
+                }}
+              >
+                <option value="">End Month</option>
+                <GenerateMonths />
+              </select>
+            </div>
+          </React.Fragment>
+        )}
+
+        <div className="my-2">
+          <input
+            className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+            type="checkbox"
+            onChange={(e) => {
+              setLocalData({ ...localData, present: e.target.checked });
+            }}
+            value={localData["present"]}
+            id="present"
+            checked={localData["present"]}
+          />
+          <label className="form-check-label inline-block text-gray-800">
+            Currently working here
+          </label>
+        </div>
+      </div>
+      <p className="text-xl font-medium text-blue-700 mt-4">Description</p>
+      <div className="my-2 ">
+        {/* <textarea
+          className=" appearance-none border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+          id="description"
+          type="text"
+          onChange={(e) => {
+            setLocalData({ ...localData, description: e.target.value });
+          }}
+          value={localData["description"]}
+          placeholder="Work Description"
+        /> */}
+        <Editor
+          editorState={editorState}
+          onEditorStateChange={setEditorState}
+          wrapperClassName="wrapper-class"
+          editorClassName="editor-class"
+          toolbarClassName="toolbar-class"
+          toolbar={{
+            options: ["list"],
+          }}
+        />
+      </div>
+      <div className="my-2">
+        <button
+          onClick={() => addData()}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Add Details
+        </button>
+      </div>
+      <div>
+        <div className="py-4"></div>
+        <hr className={"bg-slate-100 mx-10 my-[4pt]"} />
+        <div className="py-4"></div>
       </div>
     </React.Fragment>
   );

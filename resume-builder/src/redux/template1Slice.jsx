@@ -240,7 +240,7 @@ const initialState = {
     experience: {
       company: {
         required: true,
-        label: "Company",
+        label: "Company Name",
         type: "text",
       },
       role: {
@@ -345,6 +345,24 @@ const updateEditSceen = (state, action) => {
   state.current.editScreen = payload;
 };
 
+const addExperience = (state, action) => {
+  const { payload } = action;
+  state.data.experience.push(payload);
+};
+
+const updateExperience = (state, action) => {
+  const { payload } = action;
+  // find key and update values
+  if (payload.key in state.data.experience[payload.index]) {
+    state.data.experience[payload.index][payload.key] = payload.value;
+  }
+};
+
+const deleteExperience = (state, action) => {
+  const { payload } = action;
+  state.data.experience.splice(payload, 1);
+};
+
 const template1Slice = createSlice({
   name: "template1",
   initialState,
@@ -352,6 +370,9 @@ const template1Slice = createSlice({
     setUserDetailsAction: setUserDetails,
     setObjectiveAction: setObjective,
     updateEditScreenAction: updateEditSceen,
+    addExperienceAction: addExperience,
+    updateExperienceAction: updateExperience,
+    deleteExperienceAction: deleteExperience,
   },
 });
 
@@ -359,6 +380,9 @@ export const {
   setUserDetailsAction,
   setObjectiveAction,
   updateEditScreenAction,
+  addExperienceAction,
+  updateExperienceAction,
+  deleteExperienceAction,
 } = template1Slice.actions;
 
 export default template1Slice.reducer;
