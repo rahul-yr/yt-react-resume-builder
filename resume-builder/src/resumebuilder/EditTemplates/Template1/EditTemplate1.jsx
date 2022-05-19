@@ -32,28 +32,32 @@ function EditTemplate1() {
             {screens[editScreen].component}
             <div className="flex flex-row mt-8">
               <div className="w-1/2 ">
-                <button
-                  onClick={() => {
-                    if (editScreen > 0) {
-                      dispatch(updateEditScreenAction(editScreen - 1));
-                    }
-                  }}
-                  className="bg-gray-500 text-white font-bold py-2 px-4 rounded border-2 border-gray-500 hover:bg-transparent hover:text-gray-500 transition-all duration-300"
-                >
-                  Back
-                </button>
+                {editScreen > 0 && (
+                  <button
+                    onClick={() => {
+                      if (editScreen > 0) {
+                        dispatch(updateEditScreenAction(editScreen - 1));
+                      }
+                    }}
+                    className="bg-gray-500 text-white font-bold py-2 px-4 rounded border-2 border-gray-500 hover:bg-transparent hover:text-gray-500 transition-all duration-300"
+                  >
+                    Back
+                  </button>
+                )}
               </div>
               <div className="w-1/2 flex flex-row justify-end">
-                <button
-                  onClick={() => {
-                    if (editScreen < screens.length - 1) {
-                      dispatch(updateEditScreenAction(editScreen + 1));
-                    }
-                  }}
-                  className="bg-orange-500 text-white font-bold py-2 px-4 rounded border-2 border-orange-500 hover:bg-transparent hover:text-orange-500 transition-all duration-300"
-                >
-                  Next
-                </button>
+                {editScreen < screens.length - 1 && (
+                  <button
+                    onClick={() => {
+                      if (editScreen < screens.length - 1) {
+                        dispatch(updateEditScreenAction(editScreen + 1));
+                      }
+                    }}
+                    className="bg-orange-500 text-white font-bold py-2 px-4 rounded border-2 border-orange-500 hover:bg-transparent hover:text-orange-500 transition-all duration-300"
+                  >
+                    Next
+                  </button>
+                )}
               </div>
             </div>
           </div>

@@ -379,7 +379,7 @@ function Template1(props) {
                         props.configs.headingFontColor
                       }
                     >
-                      {work.role}&nbsp;({work.company})
+                      {work.company}&nbsp;({work.role})
                     </p>
                   </div>
                   <div className="w-1/3 ">

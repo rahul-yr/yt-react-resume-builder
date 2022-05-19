@@ -333,6 +333,11 @@ const setUserDetails = (state, action) => {
   }
 };
 
+const updateEditSceen = (state, action) => {
+  const { payload } = action;
+  state.current.editScreen = payload;
+};
+
 const setObjective = (state, action) => {
   const { payload } = action;
   if (payload.key in state.data) {
@@ -340,9 +345,9 @@ const setObjective = (state, action) => {
   }
 };
 
-const updateEditSceen = (state, action) => {
+const updateSummary = (state, action) => {
   const { payload } = action;
-  state.current.editScreen = payload;
+  state.data.summary = payload;
 };
 
 const addExperience = (state, action) => {
@@ -433,6 +438,7 @@ const template1Slice = createSlice({
     setUserDetailsAction: setUserDetails,
     // objective and summary
     setObjectiveAction: setObjective,
+    updateSummaryAction: updateSummary,
     // screen tracking and edit
     updateEditScreenAction: updateEditSceen,
     // experience
@@ -461,6 +467,7 @@ const template1Slice = createSlice({
 export const {
   setUserDetailsAction,
   setObjectiveAction,
+  updateSummaryAction,
   updateEditScreenAction,
   addExperienceAction,
   updateExperienceAction,

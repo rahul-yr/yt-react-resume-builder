@@ -1,11 +1,6 @@
 import React from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import {
-  EditorState,
-  // convertToRaw,
-  ContentState,
-  convertFromHTML,
-} from "draft-js";
+import { EditorState, ContentState, convertFromHTML } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 // import draftToHtml from "draftjs-to-html";
 import { convertToHTML } from "draft-convert";
