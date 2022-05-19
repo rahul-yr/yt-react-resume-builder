@@ -8,11 +8,12 @@ import {
   deleteExperienceAction,
 } from "./../../redux/template1Slice";
 import { useSelector, useDispatch } from "react-redux";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import "./RTE.css";
-import draftToHtml from "draftjs-to-html";
+import { EditorState } from "draft-js";
+import DraftEditor, {
+  ConvertDrafttoHTML,
+  ConvertHTMLtoDraft,
+  ResetDraftState,
+} from "./DraftEditor";
 
 function BasicDetailsHeader() {
   const userData = useSelector((state) => state.template1.data.user);
@@ -124,15 +125,17 @@ function GenerateMonths() {
 }
 
 function ExperienceDetails() {
+  const [editorState, setEditorState] = React.useState(() =>
+    EditorState.createEmpty()
+  );
+  const [updateEditorState, setUpdateEditorState] = React.useState(() =>
+    EditorState.createEmpty()
+  );
   const data = useSelector((state) => state.template1.data.experience);
   const validations = useSelector(
     (state) => state.template1.validations.experience
   );
   const dispatch = useDispatch();
-  // local states
-  const [editorState, setEditorState] = React.useState(() =>
-    EditorState.createEmpty()
-  );
   const [localData, setLocalData] = useState({
     company: "",
     role: "",
@@ -142,11 +145,13 @@ function ExperienceDetails() {
     end_month: "",
     present: true,
   });
+
   const addData = () => {
+    let desc = ConvertDrafttoHTML(editorState);
     dispatch(
       addExperienceAction({
         ...localData,
-        description: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+        description: desc,
       })
     );
     setLocalData({
@@ -158,8 +163,8 @@ function ExperienceDetails() {
       end_month: "",
       present: true,
     });
-    let newEdS = EditorState.push(editorState, ContentState.createFromText(""));
-    setEditorState(newEdS);
+    setEditorState(ResetDraftState(editorState));
+    setUpdateEditorState(ConvertHTMLtoDraft(desc, editorState));
   };
 
   return (
@@ -265,25 +270,9 @@ function ExperienceDetails() {
       </div>
       <p className="text-xl font-medium text-blue-700 mt-4">Description</p>
       <div className="my-2 ">
-        {/* <textarea
-          className=" appearance-none border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
-          id="description"
-          type="text"
-          onChange={(e) => {
-            setLocalData({ ...localData, description: e.target.value });
-          }}
-          value={localData["description"]}
-          placeholder="Work Description"
-        /> */}
-        <Editor
+        <DraftEditor
           editorState={editorState}
-          onEditorStateChange={setEditorState}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class"
-          toolbarClassName="toolbar-class"
-          toolbar={{
-            options: ["list"],
-          }}
+          setEditorState={setEditorState}
         />
       </div>
       <div className="my-2">
@@ -293,6 +282,13 @@ function ExperienceDetails() {
         >
           Add Details
         </button>
+      </div>
+
+      <div className="my-2">
+        <DraftEditor
+          editorState={updateEditorState}
+          setEditorState={setUpdateEditorState}
+        />
       </div>
       <div>
         <div className="py-4"></div>
