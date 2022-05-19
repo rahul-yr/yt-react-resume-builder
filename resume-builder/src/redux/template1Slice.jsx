@@ -352,10 +352,8 @@ const addExperience = (state, action) => {
 
 const updateExperience = (state, action) => {
   const { payload } = action;
-  // find key and update values
-  if (payload.key in state.data.experience[payload.index]) {
-    state.data.experience[payload.index][payload.key] = payload.value;
-  }
+  const { index } = payload;
+  state.data.experience[index] = payload.value;
 };
 
 const deleteExperience = (state, action) => {

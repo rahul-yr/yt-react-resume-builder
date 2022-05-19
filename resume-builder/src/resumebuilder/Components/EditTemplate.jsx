@@ -3,7 +3,7 @@ import ReactToPrint from "react-to-print";
 
 import PreviewTemplate from "./PreviewTemplate";
 import { useMatch } from "react-router-dom";
-import EditTemplate1 from "../EditTemplates/EditTemplate1";
+import EditTemplate1 from "../EditTemplates/Template1/EditTemplate1";
 import EditTemplatesWhiteBG from "./EditTemplatesWhiteBG";
 
 function EditTemplate() {

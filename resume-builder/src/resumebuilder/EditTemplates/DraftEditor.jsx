@@ -2,12 +2,13 @@ import React from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {
   EditorState,
-  convertToRaw,
+  // convertToRaw,
   ContentState,
   convertFromHTML,
 } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
+// import draftToHtml from "draftjs-to-html";
+import { convertToHTML } from "draft-convert";
 
 function DraftEditor({ editorState, setEditorState }) {
   return (
@@ -38,7 +39,8 @@ export const ConvertHTMLtoDraft = (html, editorState) => {
 };
 
 export const ConvertDrafttoHTML = (editorState) => {
-  let data = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+  // let data = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+  let data = convertToHTML(editorState.getCurrentContent());
   return data;
 };
 
