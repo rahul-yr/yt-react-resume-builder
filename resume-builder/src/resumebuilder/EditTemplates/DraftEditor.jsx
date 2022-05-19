@@ -16,7 +16,7 @@ function DraftEditor({ editorState, setEditorState }) {
       <Editor
         editorState={editorState}
         onEditorStateChange={setEditorState}
-        wrapperClassName="rounded p-4 border-2"
+        wrapperClassName="rounded p-4 "
         editorClassName="rounded p-4 border-2"
         toolbarClassName="rounded p-4 border-2"
         toolbar={{

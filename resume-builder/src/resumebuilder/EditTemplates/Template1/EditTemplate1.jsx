@@ -5,12 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import BasicDetailsHeader from "./BasicDetailsHeader";
 import Objective from "./Objective";
 import ExperienceDetails from "./ExperienceDetails";
-
-function ExperienceSummary() {}
-function EducationDetails() {}
-function SkillsDetails() {}
-function CertificationDetails() {}
-function LinksDetails() {}
+import EducationDetails from "./EducationDetails";
+import Skills from "./Skills";
+import Certifications from "./Certfications";
+import Links from "./Links";
 
 function EditTemplate1() {
   const editScreen = useSelector((state) => state.template1.current.editScreen);
@@ -20,20 +18,10 @@ function EditTemplate1() {
     { name: "Objective & Experience Summary", component: <Objective /> },
     { name: "Work History", component: <ExperienceDetails /> },
     { name: "Education", component: <EducationDetails /> },
-    { name: "Skills", component: <SkillsDetails /> },
-    { name: "Certifications", component: <CertificationDetails /> },
-    { name: "Links", component: <LinksDetails /> },
+    { name: "Skills", component: <Skills /> },
+    { name: "Certifications", component: <Certifications /> },
+    { name: "Links", component: <Links /> },
   ];
-
-  const addHorinzontalLine = () => {
-    return (
-      <div>
-        <div className="py-4"></div>
-        <hr className={"bg-slate-100 mx-10 my-[4pt]"} />
-        <div className="py-4"></div>
-      </div>
-    );
-  };
 
   return (
     <div className="flex flex-row justify-center bg-slate-50">

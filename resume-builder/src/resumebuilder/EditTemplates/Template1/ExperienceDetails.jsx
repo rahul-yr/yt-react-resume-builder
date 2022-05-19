@@ -291,7 +291,7 @@ function ExperienceDetails() {
             onClick={() => addData()}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Add Details
+            Add Work History
           </button>
         )}
       </div>
@@ -299,7 +299,7 @@ function ExperienceDetails() {
       <div className="my-2">{trackEditObject === null && <ShowAllData />}</div>
       <div>
         <div className="py-4"></div>
-        <hr className={"bg-slate-100 mx-10 my-[4pt]"} />
+        <hr className={"bg-slate-100 mx-10 my-[4px]"} />
         <div className="py-4"></div>
       </div>
     </React.Fragment>

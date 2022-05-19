@@ -202,6 +202,10 @@ const initialState = {
         required: true,
         label: "Percentage",
       },
+      location: {
+        required: true,
+        label: "Location",
+      },
       start_year: {
         required: true,
         label: "Start Year",
@@ -217,10 +221,6 @@ const initialState = {
       end_month: {
         required: true,
         label: "End Month",
-      },
-      location: {
-        required: true,
-        label: "Location",
       },
     },
     skills: {
@@ -282,21 +282,21 @@ const initialState = {
     certifications: {
       name: {
         required: true,
-        label: "Name",
+        label: "Certification Name",
       },
       link: {
         required: true,
-        label: "Link",
+        label: "Certification Link",
       },
     },
     links: {
       name: {
         required: true,
-        label: "Name",
+        label: "Website Name",
       },
       link: {
         required: true,
-        label: "Link",
+        label: "Website Link",
       },
     },
   },
@@ -361,16 +361,100 @@ const deleteExperience = (state, action) => {
   state.data.experience.splice(payload, 1);
 };
 
+const addEducation = (state, action) => {
+  const { payload } = action;
+  state.data.education.push(payload);
+};
+
+const updateEducation = (state, action) => {
+  const { payload } = action;
+  const { index } = payload;
+  state.data.education[index] = payload.value;
+};
+
+const deleteEducation = (state, action) => {
+  const { payload } = action;
+  state.data.education.splice(payload, 1);
+};
+
+const addSkill = (state, action) => {
+  const { payload } = action;
+  state.data.skills.push(payload);
+};
+
+const updateSkill = (state, action) => {
+  const { payload } = action;
+  const { index } = payload;
+  state.data.skills[index] = payload.value;
+};
+
+const deleteSkill = (state, action) => {
+  const { payload } = action;
+  state.data.skills.splice(payload, 1);
+};
+
+const addCertification = (state, action) => {
+  const { payload } = action;
+  state.data.certifications.push(payload);
+};
+
+const updateCertification = (state, action) => {
+  const { payload } = action;
+  const { index } = payload;
+  state.data.certifications[index] = payload.value;
+};
+
+const deleteCertification = (state, action) => {
+  const { payload } = action;
+  state.data.certifications.splice(payload, 1);
+};
+
+const addLink = (state, action) => {
+  const { payload } = action;
+  state.data.links.push(payload);
+};
+
+const updateLink = (state, action) => {
+  const { payload } = action;
+  const { index } = payload;
+  state.data.links[index] = payload.value;
+};
+
+const deleteLink = (state, action) => {
+  const { payload } = action;
+  state.data.links.splice(payload, 1);
+};
+
 const template1Slice = createSlice({
   name: "template1",
   initialState,
   reducers: {
+    // user
     setUserDetailsAction: setUserDetails,
+    // objective and summary
     setObjectiveAction: setObjective,
+    // screen tracking and edit
     updateEditScreenAction: updateEditSceen,
+    // experience
     addExperienceAction: addExperience,
     updateExperienceAction: updateExperience,
     deleteExperienceAction: deleteExperience,
+    // education
+    addEducationAction: addEducation,
+    updateEducationAction: updateEducation,
+    deleteEducationAction: deleteEducation,
+    // skills
+    addSkillAction: addSkill,
+    updateSkillAction: updateSkill,
+    deleteSkillAction: deleteSkill,
+    // certifications
+    addCertificationAction: addCertification,
+    updateCertificationAction: updateCertification,
+    deleteCertificationAction: deleteCertification,
+    // Links
+    addLinkAction: addLink,
+    updateLinkAction: updateLink,
+    deleteLinkAction: deleteLink,
   },
 });
 
@@ -381,6 +465,18 @@ export const {
   addExperienceAction,
   updateExperienceAction,
   deleteExperienceAction,
+  addEducationAction,
+  updateEducationAction,
+  deleteEducationAction,
+  addSkillAction,
+  updateSkillAction,
+  deleteSkillAction,
+  addCertificationAction,
+  updateCertificationAction,
+  deleteCertificationAction,
+  addLinkAction,
+  updateLinkAction,
+  deleteLinkAction,
 } = template1Slice.actions;
 
 export default template1Slice.reducer;
