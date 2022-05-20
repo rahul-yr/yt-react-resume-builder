@@ -11,8 +11,12 @@ ReactGA.initialize("G-NKH1LJ0QTT");
 function App() {
   const location = useLocation();
   useEffect(() => {
-    ReactGA.set({ page: location.pathname }); // Update the user's current page
-    ReactGA.send({ hitType: "pageview", page: location.pathname });
+    // ReactGA.set({ page: location.pathname }); // Update the user's current page
+    ReactGA.send({
+      hitType: "pageview",
+      page: location.pathname,
+      title: location.pathname,
+    });
   }, [location]);
 
   let element = useRoutes([
