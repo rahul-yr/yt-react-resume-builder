@@ -10,10 +10,10 @@ function EditTemplate() {
   const printRef = useRef();
   const [previewMode, setPreviewMode] = useState(false);
 
-  const handleCalculations = () => {
-    console.log(printRef.current.clientWidth, printRef.current.clientHeight);
-    console.log(printRef.current.scrollHeight);
-  };
+  // const handleCalculations = () => {
+  //   console.log(printRef.current.clientWidth, printRef.current.clientHeight);
+  //   console.log(printRef.current.scrollHeight);
+  // };
 
   const allButtons = () => {
     return (

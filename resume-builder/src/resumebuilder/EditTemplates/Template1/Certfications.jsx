@@ -6,7 +6,6 @@ import {
   updateCertificationAction,
   deleteCertificationAction,
 } from "../../../redux/template1Slice";
-import { GenerateMonths, GenerateYears } from "./Utils";
 import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
 
 function Certifications() {

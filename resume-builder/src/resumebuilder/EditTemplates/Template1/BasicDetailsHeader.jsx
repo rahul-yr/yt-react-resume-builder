@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setUserDetailsAction } from "../../../redux/template1Slice";
