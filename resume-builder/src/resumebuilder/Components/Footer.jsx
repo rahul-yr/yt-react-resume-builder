@@ -8,10 +8,24 @@ function Footer() {
         <div className="bg-white rounded-xl py-4 w-full md:w-2/4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className="flex flex-col justify-center items-center ">
-              <span>Linkedin</span>
+              <a
+                className="underline decoration-purple-300 text-purple-500"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.linkedin.com/in/rahul-reddy-y"
+              >
+                Linkedin
+              </a>
             </div>
             <div className="flex flex-col justify-center items-center">
-              <span>Twitter</span>
+              <a
+                className="underline decoration-purple-300 text-purple-500"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://twitter.com/rahul_reddy_y"
+              >
+                Twitter
+              </a>
             </div>
           </div>
         </div>

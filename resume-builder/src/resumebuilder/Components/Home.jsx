@@ -4,7 +4,7 @@ import { ChevronUpIcon } from "@heroicons/react/solid";
 
 function Home() {
   return (
-    <div className="bg-slate-50 h-screen w-full py-4">
+    <div className="bg-slate-50 w-full py-4 ">
       <div className=" m-4 ">
         <div className="flex flex-row justify-center">
           <div className="md:w-1/4"></div>
@@ -31,7 +31,40 @@ function Home() {
             </ul>
             <hr className={"bg-slate-100 my-[4pt]"} />
             <div className="py-4"></div>
-
+            <MainContent label={"Who I am"}>
+              <ul className="list-disc list-inside">
+                <li>
+                  <span>
+                    A Professional with 4+ years of experience in Technology
+                    driven developement.
+                  </span>
+                </li>
+                <li>
+                  <span>Mail : rahul.mso@outlook.com</span>
+                </li>
+                <li>
+                  <a
+                    className="underline decoration-purple-300 text-purple-500"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.linkedin.com/in/rahul-reddy-y"
+                  >
+                    Linkedin
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="underline decoration-purple-300 text-purple-500"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://twitter.com/rahul_reddy_y"
+                  >
+                    Twitter
+                  </a>
+                </li>
+              </ul>
+            </MainContent>
+            <div className="py-4"></div>
             <MainContent label={"Pre requisites"}>
               <ul className="list-disc list-inside">
                 <li>
@@ -49,13 +82,40 @@ function Home() {
                   <span>React Hooks</span>
                 </li>
                 <li>
-                  <span>React Router V6</span>
+                  <span>
+                    Advanced Route management using React Router V6 latest
+                    features
+                  </span>
                 </li>
                 <li>
-                  <span>Redux Toolkit</span>
+                  <span>Complex state management using Redux Toolkit</span>
                 </li>
                 <li>
-                  <span>Tailwind css</span>
+                  <span>
+                    Beautiful and Responsive designs using Tailwind css
+                  </span>
+                </li>
+                <li>
+                  <span>Create a dynamic PDF in React</span>
+                </li>
+                <li>
+                  <span>Integrate with Rich Text Editors in React</span>
+                </li>
+                <li>
+                  <span>Best practices for React development</span>
+                </li>
+              </ul>
+            </MainContent>
+            <div className="py-4"></div>
+            <MainContent label={"Known issues"}>
+              <ul className="list-disc list-inside">
+                <li>
+                  <span>
+                    Draft.js is not fully supported on Android devices
+                  </span>
+                </li>
+                <li>
+                  <span>Currently only A4 format is supported. </span>
                 </li>
               </ul>
             </MainContent>
@@ -69,7 +129,7 @@ function Home() {
 
 function MainContent({ label, children }) {
   return (
-    <Disclosure defaultOpen={true}>
+    <Disclosure defaultOpen={false}>
       {({ open }) => (
         <React.Fragment>
           <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
