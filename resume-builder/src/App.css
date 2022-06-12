@@ -1,0 +1,19 @@
+
+@media print {
+    .page-break {
+        /* display:  inline-block; */
+        display: block;
+        /* position: relative; */
+        page-break-inside: avoid;
+        page-break-before: auto;
+        page-break-after: auto;
+    }
+
+    a{
+        page-break-inside: avoid;
+    }
+
+    li{
+        page-break-inside: avoid;
+    }
+}
